@@ -300,7 +300,7 @@ const TriggerMatchType *LogicSignal::action_match(QAction *action)
 void LogicSignal::populate_popup_form(QWidget *parent, QFormLayout *form)
 {
 	Glib::VariantContainerBase gvar;
-	vector<int32_t> trig_types;
+	vector<uint32_t> trig_types;
 	bool is_checked;
 
 	Signal::populate_popup_form(parent, form);
@@ -315,7 +315,7 @@ void LogicSignal::populate_popup_form(QWidget *parent, QFormLayout *form)
 	init_trigger_actions(_trigger_bar);
 	_trigger_bar->addAction(_trigger_none);
 	trig_types =
-		Glib::VariantBase::cast_dynamic<Glib::Variant<vector<int32_t>>>(
+		Glib::VariantBase::cast_dynamic<Glib::Variant<vector<uint32_t>>>(
 			gvar).get();
 	for (auto type_id : trig_types) {
 		auto type = TriggerMatchType::get(type_id);
